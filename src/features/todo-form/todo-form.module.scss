@@ -1,0 +1,17 @@
+.todoForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.todoFormTitle {
+
+}
+
+.submit {
+  align-self: flex-end;
+  color: white;
+  background: #66BB6A;
+}
