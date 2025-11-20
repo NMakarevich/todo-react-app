@@ -1,4 +1,4 @@
-import type { ReactElement } from 'react';
+import { type ReactElement } from 'react';
 import type { TodoItemModel } from '../../entities/todo-item/model';
 import { TodoItem } from '../../entities/todo-item/ui';
 

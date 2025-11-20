@@ -1,6 +1,8 @@
 .button {
-  padding: 0.75rem;
-  background: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.5rem;
   border: 1px solid black;
   cursor: pointer;
   transition: border-color 0.4s;
@@ -12,8 +14,8 @@
 
 .buttonIcon {
   padding: 0;
-  background: none;
   border: none;
+  background: none;
   cursor: pointer;
   transition: transform 0.4s;
 

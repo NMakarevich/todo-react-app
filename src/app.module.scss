@@ -18,6 +18,12 @@
     height: 100%;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
   }
+}
+
+.addButton {
+  margin-bottom: 10px;
+  align-self: flex-end;
+  background: #66BB6A;
+  color: white;
 }

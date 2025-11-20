@@ -8,7 +8,7 @@ export const TodoItem = ({ item }: { item: TodoItemModel }): ReactElement => {
   const [isDone, setIsDone] = useState(item.isDone);
 
   useEffect(() => {
-    console.log(isDone);
+    // console.log(isDone);
   }, [isDone]);
 
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
