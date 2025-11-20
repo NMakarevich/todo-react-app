@@ -1,0 +1,12 @@
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem;
+  width: 100%;
+  border: 1px solid black;
+
+  &.isDone {
+    background-color: #66BB6A;
+  }
+}
