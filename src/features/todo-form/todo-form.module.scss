@@ -17,6 +17,16 @@
   }
 }
 
+.todoFormDescription {
+  border: 1px solid black;
+  border-radius: 0;
+  transition: border-color 0.4s;
+
+  &:hover {
+    border-color: rgba(black, 0.5);
+  }
+}
+
 .todoFormError {
   min-height: 14px;
   line-height: 14px;

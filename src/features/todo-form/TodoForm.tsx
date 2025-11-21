@@ -59,11 +59,16 @@ export const TodoForm = ({ mode, data }: TodoFormProps): ReactElement => {
         <Input label={'Todo title'} {...register('title')} id={'todo-title'} />
         <span className={styles.todoFormError}>{!!errors.title && errors.title.message}</span>
         <label htmlFor={'description'}>Todo description</label>
-        <textarea id={'description'} rows={5} {...register('description')} />
+        <textarea
+          className={styles.todoFormDescription}
+          id={'description'}
+          rows={5}
+          {...register('description')}
+        />
         <span className={styles.todoFormError}>
           {!!errors.description && errors.description.message}
         </span>
-        <Checkbox label={'Is done'} {...register('isDone')} />
+        <Checkbox label={'Is done'} id={'is-done'} {...register('isDone')} />
         <Button className={styles.submit} type={'submit'} disabled={!isValid}>
           Submit
         </Button>

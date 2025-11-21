@@ -1,0 +1,15 @@
+.input {
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 0;
+  transition: border-color 0.4s;
+
+  &:hover {
+    border-color: rgba(black, 0.5);
+  }
+
+  &:active {
+    outline-color: black;
+    -moz-outline-radius: 0;
+  }
+}

@@ -22,13 +22,9 @@ export const TodoItem = ({ item }: { item: TodoItemModel }): ReactElement => {
 
   return (
     <div className={isDone ? `${styles.isDone} ${styles.todo}` : styles.todo}>
-      <Checkbox
-        className={styles.todoCheckbox}
-        type="checkbox"
-        name="isDone"
-        checked={isDone}
-        onChange={handleCheckboxChange}
-      />
+      <div className={styles.todoCheckbox}>
+        <Checkbox name="isDone" id={item.id} checked={isDone} onChange={handleCheckboxChange} />
+      </div>
       <div className={styles.todoInfo}>
         <h2 className={styles.todoTitle}>{item.title}</h2>
         <p className={styles.todoDescription}>{item.description}</p>
