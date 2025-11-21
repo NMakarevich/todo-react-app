@@ -13,11 +13,15 @@ interface TodoFormProps {
   data?: TodoItemModel;
 }
 
-const MAX_TITLE_LENGTH = 5;
+const MIN_TITLE_LENGTH = 3;
+const MAX_TITLE_LENGTH = 128;
 const MAX_DESCRIPTION_LENGTH = 255;
 
 const schema = z.object({
-  title: z.string().max(MAX_TITLE_LENGTH, `Max title length is ${MAX_TITLE_LENGTH}`),
+  title: z
+    .string()
+    .min(MIN_TITLE_LENGTH, `Min title length is ${MIN_TITLE_LENGTH}`)
+    .max(MAX_TITLE_LENGTH, `Max title length is ${MAX_TITLE_LENGTH}`),
   description: z
     .string()
     .max(MAX_DESCRIPTION_LENGTH, `Max description length is ${MAX_DESCRIPTION_LENGTH}`),
@@ -32,7 +36,7 @@ export const TodoForm = ({ mode, data }: TodoFormProps): ReactElement => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<TodoFormInterface>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -40,6 +44,7 @@ export const TodoForm = ({ mode, data }: TodoFormProps): ReactElement => {
       description: data && data.description,
       isDone: data && data.isDone,
     },
+    mode: 'onChange',
   });
 
   function onFormSubmit(data: TodoFormInterface) {
@@ -49,15 +54,17 @@ export const TodoForm = ({ mode, data }: TodoFormProps): ReactElement => {
 
   return (
     <>
-      <h3 className={styles.todoFormTitle}>{`${mode} todo`}</h3>
+      <h3>{`${mode} todo`}</h3>
       <form className={styles.todoForm} onSubmit={handleSubmit(onFormSubmit)}>
         <Input label={'Todo title'} {...register('title')} id={'todo-title'} />
-        {!!errors.title && errors.title.message}
+        <span className={styles.todoFormError}>{!!errors.title && errors.title.message}</span>
         <label htmlFor={'description'}>Todo description</label>
-        <textarea id={'description'} cols={5} {...register('description')} />
-        {!!errors.description && errors.description.message}
+        <textarea id={'description'} rows={5} {...register('description')} />
+        <span className={styles.todoFormError}>
+          {!!errors.description && errors.description.message}
+        </span>
         <Checkbox label={'Is done'} {...register('isDone')} />
-        <Button className={styles.submit} type={'submit'}>
+        <Button className={styles.submit} type={'submit'} disabled={!isValid}>
           Submit
         </Button>
       </form>

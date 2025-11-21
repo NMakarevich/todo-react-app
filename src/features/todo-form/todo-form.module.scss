@@ -6,12 +6,20 @@
   gap: 10px;
 }
 
-.todoFormTitle {
-
-}
-
 .submit {
   align-self: flex-end;
   color: white;
   background: #66BB6A;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.todoFormError {
+  min-height: 14px;
+  line-height: 14px;
+  font-size: 14px;
+  color: #EF5350
 }
