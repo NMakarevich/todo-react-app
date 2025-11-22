@@ -1,6 +1,6 @@
-import type { TodoItemModel } from '../../entities/TodoItem/model';
+import type { TodoItemModel } from '../../entities/TodoItem';
 import { BASE_URL } from './constants.ts';
-import type { CreateTodoItem } from '../../entities/TodoItem/model/TodoItemModel.ts';
+import type { CreateTodoItem } from '../../entities/TodoItem';
 
 export async function loadTodoList(): Promise<TodoItemModel[] | null> {
   try {

@@ -1,4 +1,4 @@
-import type { TodoItemModel } from './entities/todo-item/model';
+import type { TodoItemModel } from './entities/TodoItem/model';
 
 export const TodoListMocked: TodoItemModel[] = [
   {

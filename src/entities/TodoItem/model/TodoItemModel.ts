@@ -4,3 +4,5 @@ export interface TodoItemModel {
   description: string;
   isDone: boolean;
 }
+
+export type CreateTodoItem = Omit<TodoItemModel, 'id'>;

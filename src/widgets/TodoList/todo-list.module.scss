@@ -1,0 +1,23 @@
+.todoListContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.todoList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.3);
+  list-style: none;
+}
+
+.addButton {
+  align-self: flex-end;
+  background: #66BB6A;
+  color: white;
+}
