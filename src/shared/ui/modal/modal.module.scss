@@ -7,6 +7,10 @@
   width: 600px;
   background-color: white;
   padding: 20px;
+
+  animation-name: open-modal;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 }
 
 .overlay {
@@ -32,4 +36,14 @@
   top: 10px;
   right: 10px;
   color: red;
+}
+
+@keyframes open-modal {
+  from {
+    transform: scale(0)
+  }
+
+  to {
+    transform: scale(1);
+  }
 }

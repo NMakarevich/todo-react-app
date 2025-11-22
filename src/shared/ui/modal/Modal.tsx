@@ -5,11 +5,7 @@ import { Button } from '../button';
 import { CloseIcon } from '../icons';
 import { ModalContext } from '../../context-api';
 
-interface ModalProps {
-  component: ReactElement;
-}
-
-export const Modal = ({ props }: { props: ModalProps }) => {
+export const Modal = ({ children }: { children: ReactElement | null }) => {
   const { closeModal } = useContext(ModalContext);
 
   function modalClose(event: MouseEvent) {
@@ -30,7 +26,7 @@ export const Modal = ({ props }: { props: ModalProps }) => {
             onlyIcon={true}
             onClick={closeModal}
           />
-          {props.component}
+          {children}
         </div>
       </div>
     </>

@@ -1,26 +1,10 @@
-import { type ReactElement, useContext } from 'react';
+import { useContext } from 'react';
 import { createPortal } from 'react-dom';
 import { Modal } from '../modal';
 import { ModalContext } from '../../context-api';
 
-interface PortalProps {
-  children: ReactElement;
-}
+export const Portal = () => {
+  const { isOpenModal, component } = useContext(ModalContext);
 
-export const Portal = ({ children }: PortalProps) => {
-  const { isOpenModal } = useContext(ModalContext);
-
-  return (
-    <>
-      {isOpenModal &&
-        createPortal(
-          <Modal
-            props={{
-              component: children,
-            }}
-          />,
-          document.body
-        )}
-    </>
-  );
+  return <>{isOpenModal && createPortal(<Modal>{component}</Modal>, document.body)}</>;
 };
