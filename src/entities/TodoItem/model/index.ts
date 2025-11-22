@@ -1,1 +1,1 @@
-export type { TodoItemModel, CreateTodoItem } from './TodoItemModel.ts';
+export type { TodoItemModel, CreateTodoItem } from './types.ts';

@@ -1,10 +1,10 @@
 import { type ReactElement, useContext } from 'react';
-import { TodoItem } from '../../entities/TodoItem';
+import { TodoForm } from '../../../features';
+import { TodoItem } from '../../../entities/TodoItem';
+import { ModalContext, TodoContext } from '../../../shared/context-api';
+import { AddIcon, Button } from '../../../shared/ui';
 
 import styles from './todo-list.module.scss';
-import { ModalContext, TodoContext } from '../../shared/context-api';
-import { AddIcon, Button } from '../../shared/ui';
-import { TodoForm } from '../../features';
 
 export const TodoList = (): ReactElement => {
   const { setIsOpenModal, setComponent } = useContext(ModalContext);
