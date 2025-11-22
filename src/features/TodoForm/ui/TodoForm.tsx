@@ -7,7 +7,7 @@ import { Button, Checkbox } from '../../../shared/ui';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { ModalContext, TodoContext } from '../../../shared/context-api';
-import { concatClasses } from '../../../shared/utils/concat-classes.ts';
+import { Textarea } from '../../../shared/ui';
 
 interface TodoFormProps {
   mode: 'Create' | 'Update';
@@ -74,22 +74,14 @@ export const TodoForm = ({ mode, todo, onCreate, onUpdate }: TodoFormProps): Rea
       <form className={styles.todoForm} onSubmit={handleSubmit(onFormSubmit)}>
         <Input label={'Todo title'} {...register('title')} id={'todo-title'} />
         <span className={styles.todoFormError}>{!!errors.title && errors.title.message}</span>
-        <label htmlFor={'description'}>Todo description</label>
-        <div className={styles.textareaContainer}>
-          <textarea
-            className={styles.todoFormDescription}
-            id={'description'}
-            rows={5}
-            value={textareaValue}
-            {...register('description', { onChange: onTextareaChange })}
-          />
-          <span
-            className={concatClasses([
-              styles.textareaLength,
-              textareaValue.length > MAX_DESCRIPTION_LENGTH ? styles.todoFormError : '',
-            ])}
-          >{`${textareaValue.length}/${MAX_DESCRIPTION_LENGTH}`}</span>
-        </div>
+        <Textarea
+          label={'Todo description'}
+          id={'description'}
+          value={textareaValue}
+          rows={5}
+          maxLength={MAX_DESCRIPTION_LENGTH}
+          {...register('description', { onChange: onTextareaChange })}
+        />
         <span className={styles.todoFormError}>
           {!!errors.description && errors.description.message}
         </span>
