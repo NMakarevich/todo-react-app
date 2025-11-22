@@ -11,7 +11,7 @@ import { type TodoFormProps, type TodoFormType, schema, MAX_DESCRIPTION_LENGTH }
 export const TodoForm = ({ mode, todo, onCreate, onUpdate }: TodoFormProps): ReactElement => {
   const { closeModal } = useContext(ModalContext);
   const { isPending, error } = useContext(TodoContext);
-  const [textareaValue, setTextareaValue] = useState('');
+  const [textareaValue, setTextareaValue] = useState(todo?.description ?? '');
 
   const {
     register,
