@@ -7,21 +7,20 @@ export const useTodoApi = () => {
   const [error, setError] = useState('');
   const [todos, setTodos] = useState<TodoItemModel[] | null>(null);
 
-  function load() {
-    setIsPending(true);
-    setError('');
-    loadTodoList()
-      .then((data) => {
-        if (data) {
-          setTodos(data);
-        } else setTodos([]);
-      })
-      .catch((error) => setError(error.message))
-      .finally(() => setIsPending(false));
-  }
-
   useEffect(() => {
-    load();
+    const loadTodos = () => {
+      setIsPending(true);
+      setError('');
+      loadTodoList()
+        .then((data) => {
+          if (data) {
+            setTodos(data);
+          } else setTodos([]);
+        })
+        .catch((error) => setError(error.message))
+        .finally(() => setIsPending(false));
+    };
+    void loadTodos();
   }, []);
 
   function create(data: CreateTodoItem) {
@@ -62,5 +61,5 @@ export const useTodoApi = () => {
       .catch((error) => setError(error.message));
   }
 
-  return { todos, isPending, error, create, load, update, remove } as const;
+  return { todos, isPending, error, create, update, remove } as const;
 };
