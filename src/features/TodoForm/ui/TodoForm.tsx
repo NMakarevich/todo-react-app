@@ -7,10 +7,11 @@ import { useForm } from 'react-hook-form';
 import { ModalContext, TodoContext } from '@shared/context-api';
 import { Textarea } from '@shared/ui';
 import { type TodoFormProps, type TodoFormType, schema, MAX_DESCRIPTION_LENGTH } from '../model';
+import type { TodoContextType } from '@shared/context-api/TodoContext/types.ts';
 
 export const TodoForm = ({ mode, todo, onCreate, onUpdate }: TodoFormProps) => {
   const { closeModal } = useContext(ModalContext);
-  const { isPending, error } = useContext(TodoContext);
+  const { isPending, error } = useContext(TodoContext) as TodoContextType;
   const [textareaValue, setTextareaValue] = useState(todo?.description ?? '');
 
   const {

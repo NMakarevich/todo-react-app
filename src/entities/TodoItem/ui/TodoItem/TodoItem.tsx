@@ -5,11 +5,12 @@ import styles from './todo-item.module.scss';
 import { Button, Checkbox, DeleteIcon, EditIcon } from '@shared/ui';
 import { ModalContext, TodoContext } from '@shared/context-api';
 import { TodoForm } from '@features/TodoForm';
+import type { TodoContextType } from '@shared/context-api/TodoContext/types.ts';
 
 export const TodoItem = ({ item }: { item: TodoItemModel }) => {
   const [isDone, setIsDone] = useState(item.isDone);
   const { setComponent, setIsOpenModal } = useContext(ModalContext);
-  const { update, remove } = useContext(TodoContext);
+  const { update, remove } = useContext(TodoContext) as TodoContextType;
 
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { target } = event;

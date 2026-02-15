@@ -5,10 +5,11 @@ import { ModalContext, TodoContext } from '@shared/context-api';
 import { AddIcon, Button } from '@shared/ui';
 
 import styles from './todo-list.module.scss';
+import type { TodoContextType } from '@shared/context-api/TodoContext/types.ts';
 
 export const TodoList = () => {
   const { setIsOpenModal, setComponent } = useContext(ModalContext);
-  const { todos, create, isPending, error } = useContext(TodoContext);
+  const { todos, create, isPending, error } = useContext(TodoContext) as TodoContextType;
 
   function openModal() {
     setIsOpenModal(true);
