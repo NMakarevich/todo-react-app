@@ -1,14 +1,7 @@
-import type { ButtonHTMLAttributes, ReactElement, ReactNode } from 'react';
 import { concatClasses } from '../../utils/concat-classes.ts';
 
 import styles from './button.module.scss';
-
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  className?: string;
-  children?: ReactNode;
-  icon?: ReactElement;
-  onlyIcon?: boolean;
-}
+import type { ButtonProps } from './types.ts';
 
 export const Button = (props: ButtonProps) => {
   const { className, children, icon, onlyIcon, ...rest } = props;

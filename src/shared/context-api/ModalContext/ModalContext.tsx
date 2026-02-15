@@ -1,12 +1,5 @@
-import { createContext, type Dispatch, type ReactElement, type SetStateAction } from 'react';
-
-type ModalContextType = {
-  isOpenModal: boolean;
-  component: ReactElement | null;
-  closeModal: () => void;
-  setComponent: Dispatch<SetStateAction<ReactElement | null>>;
-  setIsOpenModal: Dispatch<SetStateAction<boolean>>;
-};
+import { createContext } from 'react';
+import type { ModalContextType } from './types.ts';
 
 export const ModalContext = createContext<ModalContextType>({
   isOpenModal: false,

@@ -1,11 +1,5 @@
-import type { InputHTMLAttributes } from 'react';
-
 import styles from './checkbox.module.scss';
-
-interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  class?: string;
-}
+import type { CheckboxProps } from './types.ts';
 
 export const Checkbox = (props: CheckboxProps) => {
   const { label, ...rest } = props;

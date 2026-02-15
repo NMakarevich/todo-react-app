@@ -1,12 +1,7 @@
-import type { HTMLAttributes } from 'react';
 import { concatClasses } from '../../utils/concat-classes.ts';
 
 import styles from './input.module.scss';
-
-interface InputProps extends HTMLAttributes<HTMLInputElement> {
-  label?: string;
-  className?: string;
-}
+import type { InputProps } from './types.ts';
 
 export const Input = (props: InputProps) => {
   const { label, className, ...rest } = props;

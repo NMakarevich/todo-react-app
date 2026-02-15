@@ -1,12 +1,6 @@
-import { type TextareaHTMLAttributes } from 'react';
-
 import styles from './textarea.module.scss';
 import { concatClasses } from '../../utils/concat-classes.ts';
-
-interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  maxLength?: number;
-  label: string;
-}
+import type { TextareaProps } from './types.ts';
 
 export const Textarea = (props: TextareaProps) => {
   const { maxLength, label, ...rest } = props;
