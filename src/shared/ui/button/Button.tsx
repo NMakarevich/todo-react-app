@@ -10,7 +10,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onlyIcon?: boolean;
 }
 
-export const Button = (props: ButtonProps): ReactElement => {
+export const Button = (props: ButtonProps) => {
   const { className, children, icon, onlyIcon, ...rest } = props;
 
   return (

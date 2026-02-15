@@ -1,4 +1,4 @@
-import { type ReactElement, useContext } from 'react';
+import { useContext } from 'react';
 import { TodoForm } from '../../../features';
 import { TodoItem } from '../../../entities/TodoItem';
 import { ModalContext, TodoContext } from '../../../shared/context-api';
@@ -6,7 +6,7 @@ import { AddIcon, Button } from '../../../shared/ui';
 
 import styles from './todo-list.module.scss';
 
-export const TodoList = (): ReactElement => {
+export const TodoList = () => {
   const { setIsOpenModal, setComponent } = useContext(ModalContext);
   const { todos, create, isPending, error } = useContext(TodoContext);
 

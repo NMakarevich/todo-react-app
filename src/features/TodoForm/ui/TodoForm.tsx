@@ -1,4 +1,4 @@
-import { type ChangeEvent, type ReactElement, useContext, useState } from 'react';
+import { type ChangeEvent, useContext, useState } from 'react';
 import styles from './todo-form.module.scss';
 import { Input } from '../../../shared/ui/input';
 import { Button, Checkbox } from '../../../shared/ui';
@@ -8,7 +8,7 @@ import { ModalContext, TodoContext } from '../../../shared/context-api';
 import { Textarea } from '../../../shared/ui';
 import { type TodoFormProps, type TodoFormType, schema, MAX_DESCRIPTION_LENGTH } from '../model';
 
-export const TodoForm = ({ mode, todo, onCreate, onUpdate }: TodoFormProps): ReactElement => {
+export const TodoForm = ({ mode, todo, onCreate, onUpdate }: TodoFormProps) => {
   const { closeModal } = useContext(ModalContext);
   const { isPending, error } = useContext(TodoContext);
   const [textareaValue, setTextareaValue] = useState(todo?.description ?? '');
