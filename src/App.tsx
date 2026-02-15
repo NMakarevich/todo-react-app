@@ -2,9 +2,9 @@ import './app.module.scss';
 import { TodoList } from './widgets';
 
 import styles from './app.module.scss';
-import { Portal } from './shared/ui/portal/Portal.tsx';
+import { Portal } from '@shared/ui';
 import { type ReactElement, useState } from 'react';
-import { ModalContext, TodoContextProvider } from './shared/context-api';
+import { ModalContext, TodoContextProvider } from '@shared/context-api';
 
 function App() {
   const [isOpenModal, setIsOpenModal] = useState(false);

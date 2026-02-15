@@ -2,9 +2,9 @@ import type { TodoItemModel } from '../../model';
 import { useState, type ChangeEvent, useContext, type MouseEvent } from 'react';
 
 import styles from './todo-item.module.scss';
-import { Button, Checkbox, DeleteIcon, EditIcon } from '../../../../shared/ui';
-import { ModalContext, TodoContext } from '../../../../shared/context-api';
-import { TodoForm } from '../../../../features';
+import { Button, Checkbox, DeleteIcon, EditIcon } from '@shared/ui';
+import { ModalContext, TodoContext } from '@shared/context-api';
+import { TodoForm } from '@features/TodoForm';
 
 export const TodoItem = ({ item }: { item: TodoItemModel }) => {
   const [isDone, setIsDone] = useState(item.isDone);

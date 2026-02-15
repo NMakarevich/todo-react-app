@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { CreateTodoItem, TodoItemModel } from '../../entities/TodoItem';
+import type { CreateTodoItem, TodoItemModel } from '@entities/TodoItem';
 import { createTodo, deleteTodo, loadTodoList, updateTodo } from '../api/todo-api.ts';
 
 export const useTodoApi = () => {

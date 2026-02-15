@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import type { CreateTodoItem, TodoItemModel } from '../../../entities/TodoItem';
+import type { CreateTodoItem, TodoItemModel } from '@entities/TodoItem';
 
 export type TodoContextType = {
   todos: TodoItemModel[] | null;

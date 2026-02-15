@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { TodoForm } from '../../../features';
-import { TodoItem } from '../../../entities/TodoItem';
-import { ModalContext, TodoContext } from '../../../shared/context-api';
-import { AddIcon, Button } from '../../../shared/ui';
+import { TodoForm } from '@features/TodoForm';
+import { TodoItem } from '@entities/TodoItem';
+import { ModalContext, TodoContext } from '@shared/context-api';
+import { AddIcon, Button } from '@shared/ui';
 
 import styles from './todo-list.module.scss';
 

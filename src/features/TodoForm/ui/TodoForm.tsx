@@ -1,11 +1,11 @@
 import { type ChangeEvent, useContext, useState } from 'react';
 import styles from './todo-form.module.scss';
-import { Input } from '../../../shared/ui/input';
-import { Button, Checkbox } from '../../../shared/ui';
+import { Input } from '@shared/ui/input';
+import { Button, Checkbox } from '@shared/ui';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { ModalContext, TodoContext } from '../../../shared/context-api';
-import { Textarea } from '../../../shared/ui';
+import { ModalContext, TodoContext } from '@shared/context-api';
+import { Textarea } from '@shared/ui';
 import { type TodoFormProps, type TodoFormType, schema, MAX_DESCRIPTION_LENGTH } from '../model';
 
 export const TodoForm = ({ mode, todo, onCreate, onUpdate }: TodoFormProps) => {
