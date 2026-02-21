@@ -1,18 +1,20 @@
-import { type ChangeEvent, useContext, useState } from 'react';
+import { type ChangeEvent, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import styles from './todo-form.module.scss';
 import { Input } from '@shared/ui/input';
 import { Button, Checkbox } from '@shared/ui';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { ModalContext, TodoContext } from '@shared/context-api';
+import { ModalContext } from '@shared/context-api';
 import { Textarea } from '@shared/ui';
 import { type TodoFormProps, type TodoFormType, schema, MAX_DESCRIPTION_LENGTH } from '../model';
-import type { TodoContextType } from '@shared/context-api/TodoContext/types.ts';
+import { useCreateTodo } from '@features/TodoForm/api/useCreateTodo.tsx';
+import { useUpdateTodo } from '@features/TodoForm/api/useUpdateTodo.tsx';
 
-export const TodoForm = ({ mode, todo, onCreate, onUpdate }: TodoFormProps) => {
+export const TodoForm = ({ mode, todo }: TodoFormProps) => {
   const { closeModal } = useContext(ModalContext);
-  const { isPending, error } = useContext(TodoContext) as TodoContextType;
   const [textareaValue, setTextareaValue] = useState(todo?.description ?? '');
+  const createHook = useCreateTodo();
+  const updateHook = useUpdateTodo();
 
   const {
     register,
@@ -33,21 +35,55 @@ export const TodoForm = ({ mode, todo, onCreate, onUpdate }: TodoFormProps) => {
     setTextareaValue(target.value);
   }
 
-  function onFormSubmit(data: TodoFormType) {
-    if (mode === 'Create') {
-      onCreate!(data);
-    } else {
-      onUpdate!(data, todo!.id);
-    }
-    if (!isPending) {
+  const isSubmitDisabled = useMemo(() => {
+    return (
+      createHook.isPending ||
+      updateHook.isPending ||
+      !!createHook.error ||
+      !!updateHook.error ||
+      !isValid
+    );
+  }, [createHook.error, createHook.isPending, isValid, updateHook.error, updateHook.isPending]);
+
+  const onFormSubmit = useCallback(
+    (data: TodoFormType) => {
+      if (mode === 'Create') {
+        createHook.create(data);
+      } else {
+        updateHook.update(data, todo!.id);
+      }
+    },
+    [createHook, mode, todo, updateHook]
+  );
+
+  useEffect(() => {
+    if (createHook.isSuccess || updateHook.isSuccess) {
       closeModal();
     }
-  }
+  }, [closeModal, createHook.isSuccess, updateHook.isSuccess]);
+
+  const onFormChange = useCallback(() => {
+    if (
+      (!createHook.isSuccess && createHook.error) ||
+      (!updateHook.isSuccess && updateHook.error)
+    ) {
+      createHook.resetErrors();
+      updateHook.resetErrors();
+    }
+  }, [createHook, updateHook]);
+
+  const apiError = useMemo(() => {
+    return createHook.error || updateHook.error;
+  }, [createHook.error, updateHook.error]);
 
   return (
     <>
       <h3>{`${mode} todo`}</h3>
-      <form className={styles.todoForm} onSubmit={handleSubmit(onFormSubmit)}>
+      <form
+        className={styles.todoForm}
+        onSubmit={handleSubmit(onFormSubmit)}
+        onChange={onFormChange}
+      >
         <Input label={'Todo title'} {...register('title')} id={'todo-title'} />
         <span className={styles.todoFormError}>{!!errors.title && errors.title.message}</span>
         <Textarea
@@ -62,10 +98,10 @@ export const TodoForm = ({ mode, todo, onCreate, onUpdate }: TodoFormProps) => {
           {!!errors.description && errors.description.message}
         </span>
         <Checkbox label={'Is done'} id={'is-done'} {...register('isDone')} />
-        <Button className={styles.submit} type={'submit'} disabled={!isValid || isPending}>
+        <Button className={styles.submit} type={'submit'} disabled={isSubmitDisabled}>
           Submit
         </Button>
-        <span className={styles.todoFormError}>{error}</span>
+        <span className={styles.todoFormError}>{apiError}</span>
       </form>
     </>
   );

@@ -1,38 +1,43 @@
 import type { TodoItemModel } from '../../model';
-import { useState, type ChangeEvent, useContext, type MouseEvent } from 'react';
+import { type ChangeEvent, useContext, type MouseEvent } from 'react';
 
 import styles from './todo-item.module.scss';
 import { Button, Checkbox, DeleteIcon, EditIcon } from '@shared/ui';
-import { ModalContext, TodoContext } from '@shared/context-api';
+import { ModalContext } from '@shared/context-api';
 import { TodoForm } from '@features/TodoForm';
-import type { TodoContextType } from '@shared/context-api/TodoContext/types.ts';
+import { useDeleteTodo } from '@entities/TodoItem/api/useDeleteTodo.tsx';
+import { useUpdateTodo } from '@features/TodoForm/api/useUpdateTodo.tsx';
 
 export const TodoItem = ({ item }: { item: TodoItemModel }) => {
-  const [isDone, setIsDone] = useState(item.isDone);
   const { setComponent, setIsOpenModal } = useContext(ModalContext);
-  const { update, remove } = useContext(TodoContext) as TodoContextType;
+  const { deleteTodoItem } = useDeleteTodo();
+  const { update } = useUpdateTodo();
 
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
-    setIsDone(target.checked);
     update({ ...item, isDone: target.checked }, item.id);
   };
 
   const handleDeleteClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    remove(item.id);
+    deleteTodoItem(item.id);
   };
 
   function openModal() {
     setIsOpenModal(true);
-    setComponent(<TodoForm mode={'Update'} todo={item} onUpdate={update} />);
+    setComponent(<TodoForm mode={'Update'} todo={item} />);
   }
 
   return (
     <>
-      <div className={isDone ? `${styles.isDone} ${styles.todo}` : styles.todo}>
+      <div className={item.isDone ? `${styles.isDone} ${styles.todo}` : styles.todo}>
         <div className={styles.todoCheckbox}>
-          <Checkbox name="isDone" id={item.id} checked={isDone} onChange={handleCheckboxChange} />
+          <Checkbox
+            name="isDone"
+            id={item.id}
+            checked={item.isDone}
+            onChange={handleCheckboxChange}
+          />
         </div>
         <div className={styles.todoInfo}>
           <h2 className={styles.todoTitle}>{item.title}</h2>

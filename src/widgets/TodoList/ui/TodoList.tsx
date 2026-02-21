@@ -3,11 +3,12 @@ import { TodoItem } from '@entities/TodoItem';
 import { TodoContext } from '@shared/context-api';
 
 import styles from './todo-list.module.scss';
+import { useFetchTodos } from '@widgets/TodoList/api/useFetchTodos.tsx';
 import type { TodoContextType } from '@shared/context-api/TodoContext/types.ts';
 
 export const TodoList = () => {
-  const { todos, create, isPending, error } = useContext(TodoContext) as TodoContextType;
   const { todos } = useContext(TodoContext) as TodoContextType;
+  const { isPending, error } = useFetchTodos();
 
   return isPending ? (
     <span>Loading...</span>

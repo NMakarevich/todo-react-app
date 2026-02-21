@@ -1,10 +1,7 @@
-import type { CreateTodoItem, TodoItemModel } from '@entities/TodoItem';
+import type { TodoItemModel } from '@entities/TodoItem';
+import type { Dispatch, SetStateAction } from 'react';
 
 export type TodoContextType = {
   todos: TodoItemModel[] | null;
-  isPending: boolean;
-  error: string;
-  create: (data: CreateTodoItem) => void;
-  update: (data: CreateTodoItem, id: string) => void;
-  remove: (id: string) => void;
+  setTodos: Dispatch<SetStateAction<TodoItemModel[] | null>>;
 };

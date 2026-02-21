@@ -2,9 +2,9 @@ import type { TodoItemModel } from '@entities/TodoItem';
 import { BASE_URL } from './constants.ts';
 import type { CreateTodoItem } from '@entities/TodoItem';
 
-export async function loadTodoList(): Promise<TodoItemModel[] | null> {
+export async function loadTodoList(signal: AbortSignal): Promise<TodoItemModel[] | null> {
   try {
-    const response = await fetch(BASE_URL);
+    const response = await fetch(BASE_URL, { signal });
     if (response.ok) {
       return await response.json();
     } else {

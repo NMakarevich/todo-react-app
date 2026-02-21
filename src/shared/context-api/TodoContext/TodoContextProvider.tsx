@@ -1,13 +1,9 @@
-import { useTodoApi } from '../../hooks';
-import type { ReactNode } from 'react';
+import { type ReactNode, useState } from 'react';
 import { TodoContext } from './TodoContext.tsx';
+import type { TodoItemModel } from '@entities/TodoItem';
 
 export const TodoContextProvider = ({ children }: { children: ReactNode }) => {
-  const { todos, isPending, error, create, update, remove } = useTodoApi();
+  const [todos, setTodos] = useState<TodoItemModel[] | null>(null);
 
-  return (
-    <TodoContext value={{ todos, isPending, error, create, update, remove }}>
-      {children}
-    </TodoContext>
-  );
+  return <TodoContext value={{ todos, setTodos }}>{children}</TodoContext>;
 };
