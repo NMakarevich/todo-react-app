@@ -2,9 +2,10 @@ import './app.module.scss';
 import { TodoList } from './widgets';
 
 import styles from './app.module.scss';
-import { Portal } from '@shared/ui';
+import { AddIcon, Button, Portal } from '@shared/ui';
 import { type ReactElement, useState } from 'react';
 import { ModalContext, TodoContextProvider } from '@shared/context-api';
+import { TodoForm } from '@features/TodoForm';
 
 function App() {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -13,6 +14,11 @@ function App() {
   function closeModal() {
     setIsOpenModal(false);
     setComponent(null);
+  }
+
+  function openModal() {
+    setIsOpenModal(true);
+    setComponent(<TodoForm mode={'Create'} />);
   }
 
   return (
@@ -33,6 +39,14 @@ function App() {
         </header>
         <main className={styles.main}>
           <div className={styles.container}>
+            <Button
+              className={styles.addButton}
+              type={'button'}
+              icon={AddIcon()}
+              onClick={openModal}
+            >
+              Add todo
+            </Button>
             <TodoList />
           </div>
         </main>
