@@ -1,11 +1,12 @@
 import './app.module.scss';
-import { TodoList } from './widgets';
 
 import styles from './app.module.scss';
 import { AddIcon, Button, Portal } from '@shared/ui';
-import { type ReactElement, useState } from 'react';
+import { lazy, type ReactElement, useState } from 'react';
 import { ModalContext, TodoContextProvider } from '@shared/context-api';
-import { TodoForm } from '@features/TodoForm';
+
+const TodoForm = lazy(() => import('./features/TodoForm/ui/TodoForm.tsx'));
+const TodoList = lazy(() => import('./widgets/TodoList/ui/TodoList.tsx'));
 
 function App() {
   const [isOpenModal, setIsOpenModal] = useState(false);

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import { TodoItem } from '@entities/TodoItem';
 import { TodoContext } from '@shared/context-api';
 
@@ -6,7 +6,7 @@ import styles from './todo-list.module.scss';
 import { useFetchTodos } from '@widgets/TodoList/api/useFetchTodos.tsx';
 import type { TodoContextType } from '@shared/context-api/TodoContext/types.ts';
 
-export const TodoList = () => {
+const TodoList = () => {
   const { todos } = useContext(TodoContext) as TodoContextType;
   const { isPending, error } = useFetchTodos();
 
@@ -30,3 +30,5 @@ export const TodoList = () => {
     </>
   );
 };
+
+export default memo(TodoList);

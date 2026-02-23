@@ -1,12 +1,13 @@
 import type { TodoItemModel } from '../../model';
-import { type ChangeEvent, useContext, type MouseEvent } from 'react';
+import { type ChangeEvent, useContext, type MouseEvent, lazy } from 'react';
 
 import styles from './todo-item.module.scss';
 import { Button, Checkbox, DeleteIcon, EditIcon } from '@shared/ui';
 import { ModalContext } from '@shared/context-api';
-import { TodoForm } from '@features/TodoForm';
 import { useDeleteTodo } from '@entities/TodoItem/api/useDeleteTodo.tsx';
 import { useUpdateTodo } from '@features/TodoForm/api/useUpdateTodo.tsx';
+
+const TodoForm = lazy(() => import('../../../../features/TodoForm/ui/TodoForm.tsx'));
 
 export const TodoItem = ({ item }: { item: TodoItemModel }) => {
   const { setComponent, setIsOpenModal } = useContext(ModalContext);

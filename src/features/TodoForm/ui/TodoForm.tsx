@@ -1,4 +1,12 @@
-import { type ChangeEvent, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import {
+  type ChangeEvent,
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import styles from './todo-form.module.scss';
 import { Input } from '@shared/ui/input';
 import { Button, Checkbox } from '@shared/ui';
@@ -10,7 +18,7 @@ import { type TodoFormProps, type TodoFormType, schema, MAX_DESCRIPTION_LENGTH }
 import { useCreateTodo } from '@features/TodoForm/api/useCreateTodo.tsx';
 import { useUpdateTodo } from '@features/TodoForm/api/useUpdateTodo.tsx';
 
-export const TodoForm = ({ mode, todo }: TodoFormProps) => {
+const TodoForm = ({ mode, todo }: TodoFormProps) => {
   const { closeModal } = useContext(ModalContext);
   const [textareaValue, setTextareaValue] = useState(todo?.description ?? '');
   const createHook = useCreateTodo();
@@ -106,3 +114,5 @@ export const TodoForm = ({ mode, todo }: TodoFormProps) => {
     </>
   );
 };
+
+export default memo(TodoForm);
