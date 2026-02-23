@@ -5,8 +5,8 @@ import { AddIcon, Button, Portal } from '@shared/ui';
 import { lazy, type ReactElement, useState } from 'react';
 import { ModalContext, TodoContextProvider } from '@shared/context-api';
 
-const TodoForm = lazy(() => import('./features/TodoForm/ui/TodoForm.tsx'));
-const TodoList = lazy(() => import('./widgets/TodoList/ui/TodoList.tsx'));
+const TodoForm = lazy(() => import('../../features/TodoForm/ui/TodoForm.tsx'));
+const TodoList = lazy(() => import('../../widgets/TodoList/ui/TodoList.tsx'));
 
 function App() {
   const [isOpenModal, setIsOpenModal] = useState(false);
