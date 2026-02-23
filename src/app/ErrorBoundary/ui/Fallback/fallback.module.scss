@@ -1,0 +1,20 @@
+.fallback {
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 100%;
+}
+
+.reload {
+  font-size: 16px;
+  background-color: #66BB6A;
+  color: white;
+}
