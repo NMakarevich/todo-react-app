@@ -20,7 +20,7 @@ export const Modal = ({ children }: { children: ReactElement | null }) => {
       <div className={styles.overlay} onClick={modalClose}>
         <div className={styles.modal}>
           <Button
-            className={styles.modalClose}
+            className={styles['modal-close']}
             type={'button'}
             icon={CloseIcon()}
             onlyIcon={true}

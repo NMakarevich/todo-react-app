@@ -6,24 +6,24 @@
   width: 100%;
   border: 1px solid black;
 
-  &.isDone {
+  &.is-done {
     background-color: #66BB6A;
   }
 }
 
-.todoCheckbox {
+.todo-checkbox {
   margin-left: 15px;
 }
 
-.todoInfo {
+.todo-info {
   margin-left: 15px;
 }
 
-.todoTitle {
+.todo-title {
   text-align: center;
 }
 
-.todoControls {
+.todo-controls {
   display: flex;
   gap: 10px;
 }

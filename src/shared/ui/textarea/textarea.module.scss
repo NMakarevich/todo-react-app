@@ -1,4 +1,4 @@
-.textareaContainer {
+.textarea-container {
   position: relative;
   width: 100%;
 }
@@ -16,7 +16,7 @@
   }
 }
 
-.textareaLength {
+.textarea-length {
   position: absolute;
   bottom: 5px;
   right: 5px;
@@ -24,7 +24,7 @@
   line-height: 14px;
 }
 
-.textareaError {
+.textarea-error {
   min-height: 14px;
   line-height: 14px;
   font-size: 14px;

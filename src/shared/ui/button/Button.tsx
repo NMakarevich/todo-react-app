@@ -9,7 +9,10 @@ export const Button = (props: ButtonProps) => {
   return (
     <>
       <button
-        className={concatClasses([onlyIcon ? styles.buttonIcon : styles.button, className ?? ''])}
+        className={concatClasses([
+          onlyIcon ? styles['button-icon'] : styles.button,
+          className ?? '',
+        ])}
         {...rest}
       >
         {!!icon && icon}

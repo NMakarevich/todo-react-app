@@ -17,8 +17,8 @@ const TodoList = () => {
   ) : (
     <>
       {todos && todos.length > 0 ? (
-        <div className={styles.todoListContainer}>
-          <ul className={styles.todoList}>
+        <div className={styles['todo-list-container']}>
+          <ul className={styles['todo-list']}>
             {todos.map((item) => (
               <TodoItem key={item.id} item={item} />
             ))}

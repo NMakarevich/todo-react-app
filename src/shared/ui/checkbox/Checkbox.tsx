@@ -4,9 +4,9 @@ import type { CheckboxProps } from './types.ts';
 export const Checkbox = (props: CheckboxProps) => {
   const { label, ...rest } = props;
   return (
-    <div className={styles.checkboxContainer}>
+    <div className={styles['checkbox-container']}>
       {!!label && (
-        <label className={styles.checkboxLabel} htmlFor={props.id}>
+        <label className={styles['checkbox-label']} htmlFor={props.id}>
           {label}
         </label>
       )}

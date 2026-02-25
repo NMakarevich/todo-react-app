@@ -88,12 +88,12 @@ const TodoForm = ({ mode, todo }: TodoFormProps) => {
     <>
       <h3>{`${mode} todo`}</h3>
       <form
-        className={styles.todoForm}
+        className={styles['todo-form']}
         onSubmit={handleSubmit(onFormSubmit)}
         onChange={onFormChange}
       >
         <Input label={'Todo title'} {...register('title')} id={'todo-title'} />
-        <span className={styles.todoFormError}>{!!errors.title && errors.title.message}</span>
+        <span className={styles['todo-form_error']}>{!!errors.title && errors.title.message}</span>
         <Textarea
           label={'Todo description'}
           id={'description'}
@@ -102,14 +102,14 @@ const TodoForm = ({ mode, todo }: TodoFormProps) => {
           maxLength={MAX_DESCRIPTION_LENGTH}
           {...register('description', { onChange: onTextareaChange })}
         />
-        <span className={styles.todoFormError}>
+        <span className={styles['todo-form_error']}>
           {!!errors.description && errors.description.message}
         </span>
         <Checkbox label={'Is done'} id={'is-done'} {...register('isDone')} />
         <Button className={styles.submit} type={'submit'} disabled={isSubmitDisabled}>
           Submit
         </Button>
-        <span className={styles.todoFormError}>{apiError}</span>
+        <span className={styles['todo-form_error']}>{apiError}</span>
       </form>
     </>
   );

@@ -31,8 +31,8 @@ export const TodoItem = ({ item }: { item: TodoItemModel }) => {
 
   return (
     <>
-      <div className={item.isDone ? `${styles.isDone} ${styles.todo}` : styles.todo}>
-        <div className={styles.todoCheckbox}>
+      <div className={item.isDone ? `${styles['is-done']} ${styles.todo}` : styles.todo}>
+        <div className={styles['todo-checkbox']}>
           <Checkbox
             name="isDone"
             id={item.id}
@@ -40,11 +40,11 @@ export const TodoItem = ({ item }: { item: TodoItemModel }) => {
             onChange={handleCheckboxChange}
           />
         </div>
-        <div className={styles.todoInfo}>
-          <h2 className={styles.todoTitle}>{item.title}</h2>
-          <p className={styles.todoDescription}>{item.description}</p>
+        <div className={styles['todo-info']}>
+          <h2 className={styles['todo-title']}>{item.title}</h2>
+          <p className={styles['todo-description']}>{item.description}</p>
         </div>
-        <div className={styles.todoControls}>
+        <div className={styles['todo-controls']}>
           <Button type={'button'} icon={EditIcon()} onlyIcon={true} onClick={openModal} />
           <Button type={'button'} icon={DeleteIcon()} onlyIcon={true} onClick={handleDeleteClick} />
         </div>

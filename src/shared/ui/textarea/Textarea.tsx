@@ -8,13 +8,13 @@ export const Textarea = (props: TextareaProps) => {
   return (
     <>
       <label htmlFor={props.id}>{label}</label>
-      <div className={styles.textareaContainer}>
+      <div className={styles['textarea-container']}>
         <textarea className={styles.textarea} {...rest} />
         {!!maxLength && (
           <span
             className={concatClasses([
-              styles.textareaLength,
-              (props.value as string).length > maxLength ? styles.textareaError : '',
+              styles['textarea-length'],
+              (props.value as string).length > maxLength ? styles['textarea-error'] : '',
             ])}
           >{`${(props.value as string).length}/${maxLength}`}</span>
         )}
